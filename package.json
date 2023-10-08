@@ -1,0 +1,22 @@
+{
+  "name": "testjs",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "aji70"
+  },
+  "keywords": [
+    "aji"
+  ],
+  "author": "ajidokwu",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.18.0"
+  }
+}
