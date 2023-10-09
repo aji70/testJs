@@ -8,10 +8,10 @@ const hre = require("hardhat");
 
 async function main() {
   const test = await ethers.deployContract("Test");
-  
+
   console.log(
       `Test sucessfully deployed to ${test.target} with name set to ${test.getFunction("name")}`
-  );  await lock.waitForDeployment();
+  );  await inec.waitForDeployment();
   await test.waitForDeployment();
 
 }
@@ -23,3 +23,34 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 
+const { ethers } = require("hardhat");
+
+async function main() {
+  // Deploy the Test contract
+  const Test = await ethers.getContractFactory("Test");
+  const testContract = await Test.deploy();
+
+  await testContract.deployed();
+
+  console.log("Test contract deployed to:", testContract.address);
+
+  // Interact with the contract
+  const initialName = await testContract.name();
+  console.log("Initial name:", initialName);
+
+  const newName = "NewName";
+  await testContract.changeName(newName);
+  console.log("Name changed to:", newName);
+
+  const ageChange = 5;
+  const initialAge = await testContract.age();
+  await testContract.changeAge(ageChange);
+  console.log("Age changed to:", initialAge.toNumber() + ageChange);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
